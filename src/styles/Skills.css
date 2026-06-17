@@ -1,0 +1,90 @@
+.skills-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  padding: 60px 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skills-container h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #cbd5e1;
+  margin-bottom: 40px;
+}
+
+.skills-box {
+  width: 100%;
+  max-width: 800px;
+
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+
+  padding: 40px;
+  border-radius: 25px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.skills-box h2 {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  color: #93c5fd;
+}
+
+.skill {
+  margin-bottom: 15px;
+}
+
+.skill span {
+  display: block;
+  margin-bottom: 5px;
+  color: #e2e8f0;
+}
+
+.bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  border-radius: 10px;
+  background: #2563eb;
+  transition: width 1s ease;
+}
+
+/* FRONTEND */
+.html { width: 40%; }
+.css { width: 40%; }
+.js { width: 60%; }
+.react { width: 50%; }
+
+/* BACKEND */
+.node { width: 30%; }
+.python { width: 60%; }
+
+/* DATABASE */
+.mysql { width: 70%; }
+.postgre { width: 70%; }
+
+/* OTHER */
+.git { width: 40%; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .skills-container h1 {
+    font-size: 2.2rem;
+  }
+
+  .skills-box {
+    padding: 25px;
+  }
+}
