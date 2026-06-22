@@ -9,21 +9,24 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
+// PostgreSQL connection (PRODUCCIÓN READY)
 const pool = new Pool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   port: process.env.DB_PORT,
-}); 
+  ssl: {
+    rejectUnauthorized: false, // IMPORTANTE para Render
+  },
+});
 
 // Ruta prueba
 app.get("/", (req, res) => {
   res.send("API funcionando 🚀");
 });
 
-// TEST DB (MUY IMPORTANTE PARA VER SI CONECTA)
+// TEST DB
 app.get("/test-db", async (req, res) => {
   try {
     const result = await pool.query("SELECT NOW()");
@@ -34,12 +37,16 @@ app.get("/test-db", async (req, res) => {
   }
 });
 
-// POST contacto (SOLO UNA VEZ)
+// POST contacto
 app.post("/api/contacto", async (req, res) => {
   try {
-    console.log("Datos recibidos:", req.body);
-
     const { nombre, correo, telefono, mensaje } = req.body;
+
+    if (!nombre || !correo || !mensaje) {
+      return res.status(400).json({
+        error: "Faltan campos obligatorios",
+      });
+    }
 
     const query = `
       INSERT INTO contacto (nombre, correo, telefono, mensaje)
@@ -63,8 +70,8 @@ app.post("/api/contacto", async (req, res) => {
 });
 
 // iniciar servidor
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`Servidor corriendo en puerto ${PORT}`);
 });
