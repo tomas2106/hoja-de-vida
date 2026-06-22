@@ -1,5 +1,8 @@
 import { NavLink } from "react-router-dom";
 import "../styles/Navbar.css";
+import cors from "cors";
+
+app.use(cors());
 
 function Navbar() {
   return (
